@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Random;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/hello")
@@ -17,7 +16,7 @@ public class HelloController {
     private static final Random random = new Random();
 
     @RequestMapping(method = RequestMethod.GET)
-    public Greeting queue() {
+    public Greeting greeting() {
         int nameIndex = random.nextInt(names.length);
         int greetingIndex = random.nextInt(greetings.length);
         return new Greeting(greetings[greetingIndex], names[nameIndex]);
