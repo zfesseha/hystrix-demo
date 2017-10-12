@@ -4,7 +4,6 @@ import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.nsf.hello.client.HelloClient;
 import com.nsf.hello.dto.Greeting;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class HelloCommand extends HystrixCommand<Greeting> {
 
@@ -15,9 +14,13 @@ public class HelloCommand extends HystrixCommand<Greeting> {
         this.helloClient = client;
     }
 
-
     @Override
     protected Greeting run() throws Exception {
         return helloClient.getGreeting();
+    }
+
+    @Override
+    protected Greeting getFallback() {
+        return new Greeting("Hello", "World");
     }
 }

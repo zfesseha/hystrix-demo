@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class HystrixController {
 
     @Autowired
-    private HelloCommand helloCommand;
+    private HelloClient helloClient;
 
     @RequestMapping(method = RequestMethod.GET)
     public Greeting greeting() {
-        return helloCommand.execute();
+        HelloCommand command = new HelloCommand(helloClient);
+        return command.execute();
     }
 }
