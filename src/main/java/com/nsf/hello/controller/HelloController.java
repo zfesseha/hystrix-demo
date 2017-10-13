@@ -19,8 +19,8 @@ public class HelloController {
     private String[] names = new String[] {"Adam", "Bob", "Chelsea", "Diana", "Eve", "Frank", "Gina"};
     private String[] greetings = new String[] {"Hello", "Hi", "Hey", "What's up", "Greetings", "Good day"};
     private static final Random random = new Random();
-    private final Set<Integer> tripleRequests = new HashSet();
-    private final Map<Integer, Long> pastRequests = new HashMap();
+    private final Set<Integer> tripleRequests = new HashSet<Integer>();
+    private final Map<Integer, Long> pastRequests = new HashMap<Integer, Long>();
     
     private static final Long MILLIS_IN_SEC = 1000l;
     private static final Long REQUEST_THRESHOLD_SEC = 5l;
