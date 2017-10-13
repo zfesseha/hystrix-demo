@@ -16,7 +16,7 @@ public class HelloCommand extends HystrixCommand<Greeting> {
 
     @Override
     protected Greeting run() throws Exception {
-        return helloClient.getGreeting();
+        return helloClient.greeting();
     }
 
     @Override
