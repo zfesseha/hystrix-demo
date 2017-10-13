@@ -16,7 +16,7 @@ public class HelloClient {
         this.baseUrl = baseUrl;
     }
 
-    public Greeting getGreeting() {
+    public Greeting greeting() {
         return REST_TEMPLATE.getForObject(this.baseUrl + HELLO_ROUTE, Greeting.class);
     }
 
