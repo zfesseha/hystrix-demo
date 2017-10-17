@@ -6,6 +6,7 @@ import com.nsf.hystrix.command.HelloCommand;
 import com.nsf.hystrix.command.TripleCommand;
 import com.nsf.hystrix.command.TripleOnceCommand;
 
+import com.nsf.hystrix.rest.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +23,9 @@ public class HystrixController {
     private HelloClient helloClient;
 
     @RequestMapping(method = RequestMethod.GET, value = "/greeting")
-    public Greeting greeting() {
+    public Response<Greeting> greeting() {
         HelloCommand command = new HelloCommand(helloClient);
-        return command.execute();
+        return new Response<Greeting>(command.execute(), command.isResponseFromCache(), command.isResponseFromFallback());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/triple/{number}")
@@ -34,16 +35,16 @@ public class HystrixController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/triple-all")
-    public Integer[] tripleAll(@RequestParam("numbers") String numbersParam) {
+    public Response<Integer> [] tripleAll(@RequestParam("numbers") String numbersParam) {
     		// TODO: Validate query param before sending downstream
     		String [] numbersString = numbersParam.split(",");
     		
     		// TODO: start-functional - use functional pattern for this
-    		Integer [] numbers = new Integer[numbersString.length];
+        Response<Integer> [] numbers = new Response[numbersString.length];
     		int index = 0;
     		for (String numString : numbersString) {
     			TripleOnceCommand command = new TripleOnceCommand(helloClient, Integer.valueOf(numString));
-    			numbers[index] = command.execute();
+    			numbers[index] = new Response<Integer>(command.execute(), command.isResponseFromCache(), command.isResponseFromFallback());
     			index++;
     		}
     		// TODO: end-functional
