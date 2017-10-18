@@ -1,14 +1,13 @@
-package com.nsf.hystrix.controller;
+package com.demo.hystrix.controller;
 
-import com.nsf.hello.client.HelloClient;
-import com.nsf.hello.dto.Greeting;
-import com.nsf.hystrix.command.HelloCommand;
-import com.nsf.hystrix.command.TripleCommand;
-import com.nsf.hystrix.command.TripleOnceCommand;
+import com.demo.hystrix.command.HelloCommand;
+import com.demo.hello.client.HelloClient;
+import com.demo.hello.dto.Greeting;
+import com.demo.hystrix.command.TripleCommand;
+import com.demo.hystrix.command.TripleOnceCommand;
 
-import com.nsf.hystrix.rest.Response;
+import com.demo.hystrix.rest.Response;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

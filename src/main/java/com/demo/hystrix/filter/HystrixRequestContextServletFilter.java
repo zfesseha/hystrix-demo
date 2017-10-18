@@ -1,4 +1,4 @@
-package com.nsf.hystrix.filter;
+package com.demo.hystrix.filter;
 
 import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 

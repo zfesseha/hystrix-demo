@@ -1,15 +1,16 @@
-package com.nsf.hystrix.command;
+package com.demo.hystrix.command;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
-import com.nsf.hello.client.HelloClient;
+import com.demo.hello.client.HelloClient;
 
-public class TripleCommand extends HystrixCommand<Integer> {
+public class TripleOnceCommand extends HystrixCommand<Integer> {
 
     private HelloClient helloClient;
     private Integer number;
 
-    public TripleCommand(HelloClient client, Integer number) {
+    public TripleOnceCommand(HelloClient client, Integer number) {
+    		// TODO: Set a separate thread pool under the same group
         super(HystrixCommandGroupKey.Factory.asKey("TripleGroup"));
         this.helloClient = client;
         this.number = number;

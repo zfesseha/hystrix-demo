@@ -1,4 +1,4 @@
-package com.nsf.hystrix.rest;
+package com.demo.hystrix.rest;
 
 
 public class Response <T> {

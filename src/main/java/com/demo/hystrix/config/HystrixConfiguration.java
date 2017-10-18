@@ -1,6 +1,6 @@
-package com.nsf.hystrix.config;
+package com.demo.hystrix.config;
 
-import com.nsf.hystrix.filter.HystrixRequestContextServletFilter;
+import com.demo.hystrix.filter.HystrixRequestContextServletFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

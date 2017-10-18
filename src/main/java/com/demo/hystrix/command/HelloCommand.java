@@ -1,9 +1,9 @@
-package com.nsf.hystrix.command;
+package com.demo.hystrix.command;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
-import com.nsf.hello.client.HelloClient;
-import com.nsf.hello.dto.Greeting;
+import com.demo.hello.client.HelloClient;
+import com.demo.hello.dto.Greeting;
 
 public class HelloCommand extends HystrixCommand<Greeting> {
 

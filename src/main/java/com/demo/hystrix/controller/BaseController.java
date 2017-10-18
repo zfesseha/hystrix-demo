@@ -1,13 +1,13 @@
-package com.nsf.hystrix.controller;
+package com.demo.hystrix.controller;
 
-import com.nsf.hello.client.HelloClient;
+import com.demo.hello.client.HelloClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.nsf.hello.dto.Greeting;
+import com.demo.hello.dto.Greeting;
 
 @RestController
 @RequestMapping("/api/v1/base")
