@@ -7,6 +7,8 @@ import com.demo.hystrix.command.TripleCommand;
 import com.demo.hystrix.command.TripleOnceCommand;
 
 import com.demo.hystrix.rest.Response;
+import com.demo.hystrix.service.GreetingService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +23,18 @@ public class HystrixController {
     @Autowired
     private HelloClient helloClient;
 
+    @Autowired
+    private GreetingService greetingService;
+
     @RequestMapping(method = RequestMethod.GET, value = "/greeting")
     public Response<Greeting> greeting() {
         HelloCommand command = new HelloCommand(helloClient);
         return new Response<Greeting>(command.execute(), command.isResponseFromCache(), command.isResponseFromFallback());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/anotation/greeting")
+    public Response<Greeting> annotationGreeting() {
+        return new Response<Greeting>(greetingService.greeting(), false, false);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/triple/{number}")
