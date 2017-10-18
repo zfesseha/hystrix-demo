@@ -61,4 +61,7 @@ public class HystrixController {
     }
 
     // TODO: Implement a HystrixBadRequestException example
+    // TODO: Implement request collapsing
+    // TODO: Demonstrate short circuiting behavior
+    // TODO: Consolidate 2 projects and hystrix dashboard into one project with a quick README
 }
