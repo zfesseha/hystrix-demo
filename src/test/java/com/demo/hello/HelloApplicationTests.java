@@ -1,4 +1,4 @@
-package com.nsf.hello;
+package com.demo.hello;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

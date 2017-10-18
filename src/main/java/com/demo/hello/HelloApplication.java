@@ -1,4 +1,4 @@
-package com.nsf.hello;
+package com.demo.hello;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

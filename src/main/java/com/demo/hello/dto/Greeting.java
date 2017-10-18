@@ -1,4 +1,4 @@
-package com.nsf.hello.dto;
+package com.demo.hello.dto;
 
 public class Greeting {
 

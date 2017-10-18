@@ -1,6 +1,6 @@
-package com.nsf.hello.client;
+package com.demo.hello.client;
 
-import com.nsf.hello.dto.Greeting;
+import com.demo.hello.dto.Greeting;
 import org.springframework.web.client.RestTemplate;
 
 public class HelloClient {

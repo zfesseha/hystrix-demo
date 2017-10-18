@@ -1,6 +1,6 @@
-package com.nsf.hello.controller;
+package com.demo.hello.controller;
 
-import com.nsf.hello.dto.Greeting;
+import com.demo.hello.dto.Greeting;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
