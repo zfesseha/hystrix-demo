@@ -25,9 +25,11 @@ Follow the following steps to get the two demo servers up and running.
 #### Clone this repository
 ```
 	git clone https://github.com/zfesseha/hystrix-demo
+	cd hystrix-demo
 ```
 
 #### Build and run the `simple-api` server
+From the top level `hystrix-demo` directory, run the following:
 ```
 	cd simple-api
 	./mvnw clean install
@@ -37,6 +39,7 @@ Follow the following steps to get the two demo servers up and running.
 If all operations succeed, the server will be available at http://localhost:8080/.
 
 #### Build and run the `hystrix` server
+From the top level `hystrix-demo` directory, run the following.
 ```
 	cd hystrix
 	./mvnw clean install
