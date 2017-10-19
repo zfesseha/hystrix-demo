@@ -5,8 +5,8 @@
 
 - [Overview](#overview)
 - [Getting Started](#getting-started)
-    - [Demo Servers](#demo-servers)
-    - [Hystrix Dashboard](#hystrix-dashboard)
+	- [Demo Servers](#demo-servers)
+	- [Hystrix Dashboard](#hystrix-dashboard)
 - [Hystrix Concepts](#hystrix-concepts)
 - [API](#api)
 
@@ -34,7 +34,7 @@ Follow the following steps to get the two demo servers up and running.
 	./mvnw spring-boot:run
 ```
 
-If all operations succeed, the server will be available at `http://localhost:8080/`.
+If all operations succeed, the server will be available at http://localhost:8080/.
 
 #### Build and run the `hystrix` server
 ```
@@ -43,10 +43,10 @@ If all operations succeed, the server will be available at `http://localhost:808
 	./mvnw spring-boot:run
 ```
 
-If all operations succeed, the server will be available at `http://localhost:8181/`.
+If all operations succeed, the server will be available at http://localhost:8181/.
 
 ### Hystrix Dashboard
-One of the useful features Hystrix provides is a Dashboard to monitor activities in a Hystrix enabled server. The dashboard can be cloned and run from the Netflix repository and can monitor multiple event streams emitted from Hystrix enabled servers. The hystrix server in this project is already configured to emit event streams at `http://localhost:8181/hystrix.stream`.
+One of the useful features Hystrix provides is a Dashboard to monitor activities in a Hystrix enabled server. The dashboard can be cloned and run from the Netflix repository and can monitor multiple event streams emitted from Hystrix enabled servers. The hystrix server in this project is already configured to emit event streams at http://localhost:8181/hystrix.stream.
 
 #### Clone and run the Hystrix Dashboard
 **Note**: Clone this repository to a separate folder from the demo project just to avoid git history mix up.
@@ -55,7 +55,7 @@ One of the useful features Hystrix provides is a Dashboard to monitor activities
 	cd Hystrix/hystrix-dashboard
 	../gradlew appRun
 ```
-If all operations succeed, the dashboard will be available at `http://localhost:7979/hystrix-dashboard`. Type in `http://localhost:8181/hystrix.stream` in the text box, and click "Add Stream" to register the event stream to the dashboard. Click on "Monitor Stream" to display the monitoring dashboard.
+If all operations succeed, the dashboard will be available at http://localhost:7979/hystrix-dashboard. Type in http://localhost:8181/hystrix.stream in the text box, and click "Add Stream" to register the event stream to the dashboard. Click on "Monitor Stream" to display the monitoring dashboard.
 
 ## Hystrix Concepts
 **TODO**: Describe/Explain hystrix concepts implemented in this project and provide examples.
