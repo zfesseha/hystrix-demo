@@ -10,13 +10,22 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 @Service
 public class ArithmeticService {
 	
+	private static final String DEFAULT_TIMEOUT_THRESHOLD = "1500";
+	
     @Autowired
     private HelloClient helloClient;
     
     @HystrixCommand(commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = DEFAULT_TIMEOUT_THRESHOLD)
         })
     public Integer tripleWait(Integer number) {
+        return helloClient.tripleWait(number);
+    }
+    
+    @HystrixCommand(fallbackMethod = "staticTriple", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = DEFAULT_TIMEOUT_THRESHOLD)
+        })
+    public Integer tripleWaitWithFallback(Integer number) {
         return helloClient.tripleWait(number);
     }
 

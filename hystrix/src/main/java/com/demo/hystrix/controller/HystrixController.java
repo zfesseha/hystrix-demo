@@ -1,6 +1,7 @@
 package com.demo.hystrix.controller;
 
 import com.demo.hystrix.command.HelloCommand;
+
 import com.demo.hello.client.HelloClient;
 import com.demo.hello.dto.Greeting;
 import com.demo.hystrix.command.TripleCommand;
@@ -9,6 +10,9 @@ import com.demo.hystrix.command.TripleOnceCommand;
 import com.demo.hystrix.rest.Response;
 import com.demo.hystrix.service.ArithmeticService;
 import com.demo.hystrix.service.GreetingService;
+import com.google.common.collect.Iterables;
+import com.netflix.hystrix.HystrixInvokableInfo;
+import com.netflix.hystrix.HystrixRequestLog;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +42,9 @@ public class HystrixController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/anotation/greeting")
     public Response<Greeting> annotationGreeting() {
-        return new Response<Greeting>(greetingService.greeting(), false, false);
+        Greeting greeting = greetingService.greeting();
+        HystrixInvokableInfo<?> lastCommand = getLastCommand();
+		return new Response<Greeting>(greeting, lastCommand.isResponseFromCache(), lastCommand.isResponseFromFallback());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/triple/{number}")
@@ -66,11 +72,22 @@ public class HystrixController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/triple-wait/{number}")
     public Response<Integer> tripleWait(@PathVariable("number") Integer number) {
-        return new Response<Integer>(arithmeticService.tripleWait(number), false, false);
+        Integer result = arithmeticService.tripleWait(number);
+        HystrixInvokableInfo<?> lastCommand = getLastCommand();
+		return new Response<Integer>(result, lastCommand.isResponseFromCache(), lastCommand.isResponseFromFallback());
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/triple-wait-fallback/{number}")
+    public Response<Integer> tripleWaitWithFallback(@PathVariable("number") Integer number) {
+        Integer result = arithmeticService.tripleWaitWithFallback(number);
+        HystrixInvokableInfo<?> lastCommand = getLastCommand();
+		return new Response<Integer>(result, lastCommand.isResponseFromCache(), lastCommand.isResponseFromFallback());
+    }
+    
+    private HystrixInvokableInfo<?> getLastCommand(){
+        return Iterables.getLast(HystrixRequestLog.getCurrentRequest().getAllExecutedCommands());
     }
 
     // TODO: Implement a HystrixBadRequestException example
     // TODO: Implement request collapsing
-    // TODO: Demonstrate short circuiting behavior
-    // TODO: Consolidate 2 projects and hystrix dashboard into one project with a quick README
 }
