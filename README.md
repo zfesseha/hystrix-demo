@@ -14,7 +14,7 @@
 
 ## Overview
 
-This is a simple demonstration of Hystrix concepts in a Spring Boot applications. It includes two REST API applications implemented using Spring Boot. The first project in the `simple-api` folder is a simple server with a few endpoints with various behaviors. The other project in the `hystrix` folder is another server with a dependency on the `simple-api` server. It provides endpoints that retrieve and return results from the `simple-api` server. Some of these APIs directly delegate the call to the `simple-api` server and others make use of hystrix in the network calls to the `simple-api` server to improve fault tolerance.
+This is a simple demonstration of Hystrix concepts in Spring Boot applications. It includes two REST API applications implemented using Spring Boot. The first project in the `simple-api` folder is a simple server with a few endpoints with various behaviors. The other project in the `hystrix` folder is another server with a dependency on the `simple-api` server. It provides endpoints that retrieve and return results from the `simple-api` server. Some of these APIs directly delegate the call to the `simple-api` server and others make use of hystrix in the network calls to the `simple-api` server to improve fault tolerance.
 
 
 ## Getting Started
