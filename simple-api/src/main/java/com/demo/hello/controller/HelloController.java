@@ -38,7 +38,7 @@ public class HelloController {
     }
 
     // TODO: Update the route, method name and corresponding client methods to throttled-triple
-    @RequestMapping(method = RequestMethod.GET, value = "/triple-once/{number}")
+    @RequestMapping(method = RequestMethod.GET, value = "/triple-throttled/{number}")
     public Integer tripleOnce(@PathVariable("number") Integer number) {
     		Long lastRequest = pastRequests.get(number);
     		Long now = System.currentTimeMillis();
