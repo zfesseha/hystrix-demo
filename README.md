@@ -11,6 +11,7 @@
 - [API](#api)
 	- [Simple API Server](#simple-api-server)
 	- [Hystrix Server](#hystrix-server)
+- [Helpful 'scripts'](#helpful-scripts)
 - [Resources](#resources)
 
 <!-- /MarkdownTOC -->
@@ -68,7 +69,7 @@ If all operations succeed, the dashboard will be available at http://localhost:7
 ## API
 ### Simple API Server
 | Endpoint | Description | Link to Endpoint |
-| --------------- | ----------------- | -------------------|  
+| -------- | ----------- | -----------------| 
 | /api/v1/greeting | A simple endpoint that returns a greeting based on a predefined list of greetings and names. | http://localhost:8080/api/v1/greeting |
 | /api/v1/triple-throttled/{number} | A simple endpoint that takes an integer (number) and returns the triple of it (3 * number). This endpoint can only return the triple of a certain number once within a 5 second window. That is, once a request is made to triple a number, all subsequent calls to triple the same number within the next 5 seconds return an error. | http://localhost:8080/api/v1/triple-throttled/6 |
 | /api/v1/triple-wait/{number} | An endpoint that also returns a triple of a number but waits before it returns the result. The amount of time it waits is a random amount of milliseconds between 0 and 7000 (7 seconds). | http://localhost:8080/api/v1/triple-wait/7 | 
@@ -79,13 +80,19 @@ The Hystrix server has two sets of APIs under `api/v1/base` and `api/v1/hystrix`
 
 #### `api/v1/base`
 | Endpoint | Description | Link to Endpoint |
+| -------- | ----------- | -----------------|
 | /api/v1/base/greeting | A proxy to the `/api/v1/greeting` endpoint in the simple-api server. | http://localhost:8181/api/v1/base/greeting | 
 | api/v1/base/triple-all?numbers={numbers} | An endpoint that takes a comma separated list of numbers as a query parameter and calls the `/api/v1/triple-throttled/{number}` endpoint on the simple-api server and returns a list containing the results. | http://localhost:8181/api/v1/base/triple-all?numbers=1,2,3,4,5,6,7,8 | 
-| /api/v1/base/triple-wait/8 | A proxy to the `/api/v1/greeting` endpoint in the simple-api server. | http://localhost:8181/api/v1/base/triple-wait/8 | 
+| /api/v1/base/triple-wait/{number} | A proxy to the `/api/v1/triple-wait/{number}` endpoint in the simple-api server. | http://localhost:8181/api/v1/base/triple-wait/8 | 
 
 #### `api/v1/hystrix`
 | Endpoint | Description | Link to Endpoint |
+| -------- | ----------- | -----------------|
 | TODO | TODO | TODO | 
+
+## Helpful 'scripts'
+- ``` date; echo "********************"; for i in {1..100}; do echo $i; curl "http://localhost:8181/api/v1/hystrix/triple-wait-fallback/$i"; echo; echo "------"; done; echo "********************"; date; ```
+    - Makes a GET request to the `api/v1/hystrix/triple-wait-fallback/` api 100 times and prints the result. It also print the date at the beginning and end of the command to serve as timestamps. Change the target endpoint and the number of requests as necessary.
 
 ## Resources
 - https://github.com/Netflix/Hystrix
