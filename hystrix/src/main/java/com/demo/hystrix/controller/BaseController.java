@@ -41,4 +41,9 @@ public class BaseController {
     		// TODO: end-functional
         return numbers;
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/triple-wait/{number}")
+    public Integer tripleWait(@PathVariable("number") Integer number) {
+        return helloClient.tripleWait(number);
+    }
 }

@@ -7,6 +7,7 @@ import com.demo.hystrix.command.TripleCommand;
 import com.demo.hystrix.command.TripleOnceCommand;
 
 import com.demo.hystrix.rest.Response;
+import com.demo.hystrix.service.ArithmeticService;
 import com.demo.hystrix.service.GreetingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class HystrixController {
 
     @Autowired
     private GreetingService greetingService;
+
+    @Autowired
+    private ArithmeticService arithmeticService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/greeting")
     public Response<Greeting> greeting() {
@@ -58,6 +62,11 @@ public class HystrixController {
     		}
     		// TODO: end-functional
         return numbers;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/triple-wait/{number}")
+    public Response<Integer> tripleWait(@PathVariable("number") Integer number) {
+        return new Response<Integer>(arithmeticService.tripleWait(number), false, false);
     }
 
     // TODO: Implement a HystrixBadRequestException example

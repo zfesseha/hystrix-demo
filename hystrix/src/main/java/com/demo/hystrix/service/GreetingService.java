@@ -18,7 +18,7 @@ public class GreetingService {
         return helloClient.greeting();
     }
 
-    protected Greeting staticGreeting() {
+    private Greeting staticGreeting() {
         return new Greeting("Hello", "World");
     }
 }
