@@ -19,7 +19,6 @@ public class HelloController {
     private String[] names = new String[] {"Adam", "Bob", "Chelsea", "Diana", "Eve", "Frank", "Gina"};
     private String[] greetings = new String[] {"Hello", "Hi", "Hey", "What's up", "Greetings", "Good day"};
     private static final Random random = new Random();
-    private final Set<Integer> tripleRequests = new HashSet<Integer>();
     private final Map<Integer, Long> pastRequests = new HashMap<Integer, Long>();
     
     private static final Long MILLIS_IN_SEC = 1000l;
@@ -48,8 +47,15 @@ public class HelloController {
             		+ ((double) (now - lastRequest)/MILLIS_IN_SEC) + " seconds ago.\nPlease wait " + REQUEST_THRESHOLD_SEC +
             		" seconds before making a request to triple the same number.");
         }
-        tripleRequests.add(number);
         pastRequests.put(number, now);
+        return 3 * number;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/triple-wait/{number}")
+    public Integer tripleWait(@PathVariable("number") Integer number) throws InterruptedException {
+        int wait = random.nextInt(7000);
+        System.out.println("wait:\t" + wait);
+        Thread.sleep(wait);
         return 3 * number;
     }
 }
